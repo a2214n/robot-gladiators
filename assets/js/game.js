@@ -9,7 +9,7 @@ var enemyAttack= 12;
 
 var fight = function (enemyName) {
     //repeat and execute as long as the enemy-robot is alive
-    while(playerHealth > 0 && enemyHealth >0) {
+    while(playerHealth > 0 && enemyHealth > 0) {
     var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle? Enter 'FIGHT' or 'SKIP' to choose.");
     
     //if a player picks "skip" confirm and then stop the loop
@@ -26,8 +26,8 @@ var fight = function (enemyName) {
             break;
         }
     }   
-    // if player chooses to fight, then fight
-    if (promptFight === "fight" || promptFight === "FIGHT") {
+        // if player chooses to fight, then fight
+        //if (promptFight === "fight" || promptFight === "FIGHT") {
         //remove enemy's health by subtracting the amount set in the playerAttack variable
         enemyHealth = enemyHealth - playerAttack;
         console.log(
@@ -52,13 +52,28 @@ var fight = function (enemyName) {
         window.alert(playerName + " still has " + playerHealth + " health left.");
     }
   }
-    };  
-    
+};  
+    // fight each enemy-robot by looping over them and fighting them one at a timee
     for (var i = 0; i < enemyNames.length; i++) {
+        //if player is still alive, keep fighting
+        if (playerHealth > 0) {
+            // let player know what round they are in, remember that arrays start at 0 so it needs to have 1 added to it
+            window.alert("Welcome to Robot Galdiators" + (i + 1));
+       
+        // pick new enemy to fight based on the index of the enemyNames array
         var pickedEnemyName = enemyNames[i];
+
+        //reset enemyHealth before each match
         enemyHealth = 50;
+        
         //debugger;
+
         fight(pickedEnemyName); 
     }  
-  }  
+    //if player isn't alive, stop the game
+    else {
+        window.alert("You have lost your robot in battle! Game Over!");  
+        break;          
+    }
+ }
 
